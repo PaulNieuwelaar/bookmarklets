@@ -128,7 +128,7 @@ javascript:var form=$("iframe").filter(function(){return"visible"==$(this).css("
 **New**  
 Takes you to the create form of a specific entity without having to find it in the sitemap or advanced find first.
 ```javascript
-javascript:var form=$("iframe").filter(function(){return"visible"==$(this).css("visibility")})[0].contentWindow,records=[];try{records.push(form.Xrm.Page.data.entity.getId().replace("{","").replace("}",""))}catch(a){try{var recordsHtml=[],form2=form.$("iframe").filter(function(){return"visible"==$(this).css("visibility")})[0].contentWindow;if(recordsHtml=form2.document.getElementsByClassName("ms-crm-List-SelectedRow-Lite"),0==recordsHtml.length&&(recordsHtml=form.document.getElementsByClassName("ms-crm-List-SelectedRow-Lite")),0==recordsHtml.length&&(recordsHtml=form.document.getElementsByClassName("ms-crm-List-SelectedRow")),recordsHtml.length>0)for(var i=0;i<recordsHtml.length;i++){var id=recordsHtml[i].getAttribute("oid");records.push(id.replace("{","").replace("}",""))}}catch(a){}}records.length>0?prompt("Copy the ID",records.join(",")):alert("No records selected");void(0);
+javascript:var form = $("iframe").filter(function () { return ($(this).css('visibility') == 'visible') })[0].contentWindow; try { var name = form.EntityLogicalName || form.Xrm.Page.data.entity.getEntityName(); } catch(e) { } var y = prompt('Type the schema name of the entity to create:', name ? name : 'account'); if (y) { var x = form.Xrm.Utility.openEntityForm(y); }
 ```
 
 **Advanced Find**  
