@@ -18,9 +18,9 @@ javascript:$("iframe").filter(function () { return ($(this).css('visibility') ==
 ```
 
 **Save & New**  
-The old save and new, perfect for creating related records in the context of a parent.
+The old save and new, perfect for creating related records in the context of a parent. The normal "saveandnew" doesn't maintain mappings. This one does.
 ```javascript
-javascript:$("iframe").filter(function () { return ($(this).css('visibility') == 'visible') })[0].contentWindow.Xrm.Page.data.entity.save('saveandnew');
+javascript:var form=$("iframe").filter(function(){return"visible"==$(this).css("visibility")})[0].contentWindow;try{form.Xrm.Page.data.save().then(function(){form.Xrm.Page.getAttribute().forEach(function(e){e.setSubmitMode("never")});var e=form.Xrm.Page.data.entity.getEntityName(),t=form.Xrm.Page.context.getQueryStringParameters(),r=t._CreateFromId,a=t._CreateFromType,n=null;null!=r&&null!=a&&((n={})._CreateFromId=r,n._CreateFromType=a),form.Xrm.Utility.openEntityForm(e,null,n)})}catch(e){form.Xrm.Page.data.entity.save("saveandnew")}
 ```
 
 **Refresh**  
