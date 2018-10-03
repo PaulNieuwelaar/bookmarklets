@@ -1,4 +1,4 @@
-# Dynamics 365 Bookmarklets
+# Dynamics 365 Bookmarklets (Official)
 
 [View all the bookmarklets on a convenient webpage](https://paulnieuwelaar.github.io/bookmarklets/bookmarklets.html)
 
