@@ -56,7 +56,7 @@ javascript:var form=$("iframe").filter(function(){return $(this).css("visibility
 **God Mode**  
 Removes all client side validation on the form.
 ```javascript
-javascript:var f=$("iframe").filter(function(){return"visible"==$(this).css("visibility")})[0].contentWindow;function godMode(){var a=f.Xrm.Page.data.entity.attributes.get();for(var b in a){a[b].setRequiredLevel("none"),a[b].setSubmitMode("dirty");}var c=f.Xrm.Page.ui.controls.get();for(var b in c)try{c[b].setVisible(!0);c[b].setDisabled(!1);c[b].clearNotification();var d=c[b].getName();f.document.getElementById(d+"_d").style.display="";f.document.getElementById(d+"_d").parentNode.style.display="";f.document.getElementById(d+"_c").style.display=""}catch(a){}var e=f.Xrm.Page.ui.tabs.get();for(var b in e){e[b].setVisible(!0);e[b].setDisplayState("expanded");var g=e[b].sections.get();for(var b in g)g[b].setVisible(!0)}}f.Xrm.Page.data.entity.addOnSave(function(a){try{var b=a.getEventArgs();Object.keys(b).forEach(function(a){"boolean"==typeof b[a]&&(b[a]=!1)})}catch(a){}godMode()});godMode();
+javascript:var form=Xrm.Page.data?window:$("iframe").filter(function(){return $(this).css("visibility")=="visible"})[0].contentWindow;form.Xrm.Page.data.entity.attributes.get().forEach(attr=>{attr.setRequiredLevel("none");attr.setSubmitMode("dirty");});form.Xrm.Page.ui.controls.get().forEach(ctrl=>{try{ctrl.setVisible(true);ctrl.setDisabled(false);ctrl.clearNotification();}catch(e){}});form.Xrm.Page.ui.tabs.get().forEach(tab=>{tab.setVisible(true);tab.sections.get().forEach(sect=>{sect.setVisible(true);});});
 ```
 
 **Display Options**  
